@@ -1,0 +1,18 @@
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  📋 list
+┃  All kind clusters
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 Preflight
+──────────────────────────────────────────────────────────────────
+  ▶ command -v docker
+  → /c/Program Files/Docker/Docker/resources/bin/docker
+  ▶ docker info
+🐳 check 1: is docker installed and running : ❌ no
+❌ Docker is installed but the daemon is not running.
+💡 Start your Docker daemon, then check with: docker info
+This command never starts Docker. Start it yourself, then run this again.
+⚠️  docker info said:
+failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+⚠️  This script will not install anything.

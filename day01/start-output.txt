@@ -1,0 +1,62 @@
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🚀 start
+┃  Create or resume ai-ops-training and run busybox
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 Preflight
+──────────────────────────────────────────────────────────────────
+  ▶ command -v docker
+  → /c/Program Files/Docker/Docker/resources/bin/docker
+  ▶ docker info
+🐳 check 1: is docker installed and running : ✅ yes
+  ▶ command -v kubectl
+  → /c/Users/zbasm/AppData/Local/Microsoft/WinGet/Packages/Kubernetes.kubectl_Microsoft.Winget.Source_8wekyb3d8bbwe/kubectl
+☸️  check 2: is kubectl installed : ✅ yes
+  ▶ command -v kind
+  → /c/Users/zbasm/AppData/Local/Microsoft/WinGet/Packages/Kubernetes.kind_Microsoft.Winget.Source_8wekyb3d8bbwe/kind
+📦 check 3: is kind installed : ✅ yes
+  ▶ kind version
+kind v0.33.0 go1.26.7 windows/amd64
+
+🚀 Cluster
+──────────────────────────────────────────────────────────────────
+  ▶ kind get clusters
+ℹ️  Cluster ai-ops-training already exists.
+  ▶ kind get nodes --name ai-ops-training
+  ▶ docker start ai-ops-training-control-plane
+  Host ports were fixed when the cluster was created: http 8081, https 8443 (read from docker port).
+  ▶ kind export kubeconfig --name ai-ops-training
+Set kubectl context to "kind-ai-ops-training"
+⏳ Waiting for nodes...
+  ▶ kubectl --context kind-ai-ops-training wait --for=condition=Ready nodes --all --timeout=180s
+node/ai-ops-training-control-plane condition met
+
+🧪 Test deploy
+──────────────────────────────────────────────────────────────────
+⏳ Applying busybox...
+  ▶ kubectl --context kind-ai-ops-training apply -f -
+deployment.apps/busybox unchanged
+⏳ Waiting for busybox...
+  ▶ kubectl --context kind-ai-ops-training rollout status deployment/busybox --timeout=180s
+deployment "busybox" successfully rolled out
+  ▶ kubectl --context kind-ai-ops-training wait --for=condition=Ready pod -l app=busybox --timeout=180s
+pod/busybox-5f8875dd96-l9zvc condition met
+🧪 check 4: test deploy: deploy busybox : ✅ yes
+kubectl command:
+  ▶ kubectl --context kind-ai-ops-training apply -f -
+  ▶ kubectl --context kind-ai-ops-training rollout status deployment/busybox --timeout=180s
+  ▶ kubectl --context kind-ai-ops-training wait --for=condition=Ready pod -l app=busybox --timeout=180s
+  ▶ kubectl config use-context kind-ai-ops-training
+
+🎉 Cluster: ai-ops-training is up and running.
+👉 Check the busybox pod: kubectl get pods
+
+🌐 Where things are
+──────────────────────────────────────────────────────────────────
+  ☸️  Cluster  ai-ops-training  ·  context kind-ai-ops-training
+  🔌 API      https://127.0.0.1:52445  (for kubectl, not a browser page; kind has no web UI)
+  🚪 Ingress  http://localhost:8081  ·  https://localhost:8443  (ports in .logs/ports.env)
+  🔍 Inspect  kubectl get nodes  ·  kubectl get pods -A  ·  ./tools/kind list  ·  docker ps
+  📜 Logs     docker logs ai-ops-training-control-plane  ·  kind export logs ./kind-logs --name ai-ops-training
+  📚 Docs     ./build.sh serves this repo's docs (default http://localhost:4321, see README.md)

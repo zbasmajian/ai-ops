@@ -1,0 +1,3 @@
+CONTAINER ID   IMAGE                             COMMAND                  CREATED             STATUS                       PORTS                  NAMES
+6a25ff3f35dc   kindest/node:v1.37.0              "/usr/local/bin/entr…"   About an hour ago   Exited (137) 3 minutes ago                          ai-ops-training-control-plane
+4b364002b3df   docker/welcome-to-docker:latest   "/docker-entrypoint.…"   37 hours ago        Exited (255) 37 hours ago    0.0.0.0:8088->80/tcp   welcome-to-docker

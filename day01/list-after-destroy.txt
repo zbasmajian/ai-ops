@@ -1,0 +1,23 @@
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  📋 list
+┃  All kind clusters
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 Preflight
+──────────────────────────────────────────────────────────────────
+  ▶ command -v docker
+  → /c/Program Files/Docker/Docker/resources/bin/docker
+  ▶ docker info
+🐳 check 1: is docker installed and running : ✅ yes
+  ▶ command -v kind
+  → /c/Users/zbasm/AppData/Local/Microsoft/WinGet/Packages/Kubernetes.kind_Microsoft.Winget.Source_8wekyb3d8bbwe/kind
+📦 check 3: is kind installed : ✅ yes
+  ▶ kind version
+kind v0.33.0 go1.26.7 windows/amd64
+
+📋 Clusters
+──────────────────────────────────────────────────────────────────
+  ▶ kind get clusters
+No kind clusters found.
+ℹ️  No kind clusters.
