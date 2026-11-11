@@ -1,0 +1,22 @@
+$ kubectl get deploy
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+busybox      1/1     1            1           64m
+hello-go     1/1     1            1           23m
+hello-java   1/1     1            1           23m
+hello-py     1/1     1            1           38m
+
+$ kubectl get pods -o wide
+NAME                          READY   STATUS    RESTARTS   AGE     IP            NODE                            NOMINATED NODE   READINESS GATES
+busybox-5f8875dd96-hb2jt      1/1     Running   0          65m     10.244.0.5    ai-ops-training-control-plane   <none>           <none>
+hello-go-6dc7f78fb5-4lxk7     1/1     Running   0          6m14s   10.244.0.17   ai-ops-training-control-plane   <none>           <none>
+hello-java-77cfd55659-qwzbk   1/1     Running   0          6m14s   10.244.0.15   ai-ops-training-control-plane   <none>           <none>
+hello-py-c97c7d9bc-tf4h9      1/1     Running   0          74s     10.244.0.18   ai-ops-training-control-plane   <none>           <none>
+
+$ kubectl logs -l app=hello-java --tail=1
+Hello, Zohrab! from Java 21.0.13 on hello-java-77cfd55659-qwzbk
+
+$ kubectl logs -l app=hello-go --tail=1
+Hello, Zohrab! from Go go1.23.12 on hello-go-6dc7f78fb5-4lxk7
+
+$ kubectl logs -l app=hello-py --tail=1
+Hello, Zohrab! from Python 3.12.16 on hello-py-c97c7d9bc-tf4h9
